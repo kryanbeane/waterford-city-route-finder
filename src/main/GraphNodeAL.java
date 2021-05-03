@@ -1,24 +1,22 @@
 package main;
 import java.util.*;
 
-public class GraphNodeAL<T,K> {
-    public T xCoord;
-    public K yCoord;
-    public int nodeValue=Integer.MAX_VALUE;
-    public List<GraphNodeAL<T, K>> adjList = new ArrayList<>();
+public class GraphNodeAL<T> {
+    public T data;
+    public int nodeValue = Integer.MAX_VALUE;
+    public List<GraphLinkAL> adjList = new ArrayList<>();
 
-    public GraphNodeAL(T xCoord, K yCoord) {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+    public GraphNodeAL(T data) {
+        this.data = data;
     }
 
-    public void connectToNodeDirected(GraphNodeAL<T, K> destNode) {
-        adjList.add(destNode);
+    public void connectToNodeDirected(GraphNodeAL<T> destNode, int cost) {
+        adjList.add(new GraphLinkAL(destNode, cost));
     }
 
-    public void connectToNodeUndirected(GraphNodeAL<T, K> destNode) {
-        adjList.add(destNode);
-        destNode.adjList.add(this);
+    public void connectToNodeUndirected(GraphNodeAL<T> destNode, int cost) {
+        adjList.add(new GraphLinkAL(destNode, cost));
+        destNode.adjList.add(new GraphLinkAL(this, cost));
     }
 }
 

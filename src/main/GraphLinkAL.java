@@ -1,12 +1,11 @@
 package main;
 
-public class GraphLinkAL<T, K> {
-    public GraphNodeAL<T, K> destNode;
+public class GraphLinkAL {
+    public GraphNodeAL<?> destNode;
     public int cost;
 
-    public GraphLinkAL(GraphNodeAL<T, K> destNode, int cost) {
-        this.destNode=destNode;
-        this.cost=cost;
+    public GraphLinkAL(GraphNodeAL<?> destNode, int cost) {
+        this.destNode = destNode;
+        this.cost = cost;
     }
-
 }
