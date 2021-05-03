@@ -4,6 +4,7 @@ import java.util.*;
 public class GraphNodeAL<T,K> {
     public T xCoord;
     public K yCoord;
+    public int nodeValue=Integer.MAX_VALUE;
     public List<GraphNodeAL<T, K>> adjList = new ArrayList<>();
 
     public GraphNodeAL(T xCoord, K yCoord) {
