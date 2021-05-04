@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Dijkstra {
 
-    public static <T> CostedPath findCheapestPathDijkstra(GraphNodeAL<?> startNode, T lookingfor) {
+    public static <T> CostedPath findCheapestPathDijkstra(Node<?> startNode, T lookingfor) {
         CostedPath cp = new CostedPath();
-        List<GraphNodeAL<?>> encountered = new ArrayList<>(), unencountered = new ArrayList<>();
+        List<Node<?>> encountered = new ArrayList<>(), unencountered = new ArrayList<>();
         startNode.nodeValue = 0;
         unencountered.add(startNode);
-        GraphNodeAL<?> currentNode;
+        Node<?> currentNode;
         do {
             currentNode = unencountered.remove(0);
             encountered.add(currentNode);
@@ -19,8 +19,8 @@ public class Dijkstra {
                 cp.pathCost = currentNode.nodeValue;
                 while (currentNode != startNode) {
                     boolean foundPrevPathNode = false;
-                    for (GraphNodeAL<?> n : encountered)
-                        for (GraphLinkAL e : n.adjList)
+                    for (Node<?> n : encountered)
+                        for (Link e : n.adjList)
                             if (e.destNode == currentNode && currentNode.nodeValue-e.cost==n.nodeValue) {
                                 cp.pathList.add(0,n);
                                 currentNode = n;
@@ -29,11 +29,11 @@ public class Dijkstra {
                             }
                         if (foundPrevPathNode) break;
                 }
-                for (GraphNodeAL<?> n : encountered) n.nodeValue=Integer.MAX_VALUE;
-                for (GraphNodeAL<?> n : unencountered) n.nodeValue=Integer.MAX_VALUE;
+                for (Node<?> n : encountered) n.nodeValue=Integer.MAX_VALUE;
+                for (Node<?> n : unencountered) n.nodeValue=Integer.MAX_VALUE;
                 return cp;
             }
-            for (GraphLinkAL e : currentNode.adjList)
+            for (Link e : currentNode.adjList)
                 if (!encountered.contains(e.destNode)) {
                     e.destNode.nodeValue = Integer.min(e.destNode.nodeValue, currentNode.nodeValue+e.cost);
                     unencountered.add(e.destNode);
