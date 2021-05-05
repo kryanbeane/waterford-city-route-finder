@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Dijkstra {
 
-    public static <T> CostedPath findCheapestPathDijkstra(Node<?> startNode, T lookingfor) {
+    public static <T> CostedPath findCheapestPathDijkstra(Node<?> startNode, int destXCoord, int destYCoord) {
         CostedPath cp = new CostedPath();
         List<Node<?>> encountered = new ArrayList<>(), unencountered = new ArrayList<>();
         startNode.nodeValue = 0;
@@ -14,7 +14,7 @@ public class Dijkstra {
         do {
             currentNode = unencountered.remove(0);
             encountered.add(currentNode);
-            if (currentNode.data.equals(lookingfor)) {
+            if (currentNode.xCoord == destXCoord && currentNode.yCoord == destYCoord) {
                 cp.pathList.add(currentNode);
                 cp.pathCost = currentNode.nodeValue;
                 while (currentNode != startNode) {
