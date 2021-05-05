@@ -61,6 +61,14 @@ public class Node<T> {
         this.name=name;
     }
 
+    public int getNodeValue() {
+        return nodeValue;
+    }
+
+    public void setNodeValue(int nodeValue) {
+        this.nodeValue = nodeValue;
+    }
+
     public T getData() {
         return data;
     }
