@@ -5,11 +5,11 @@ public class Node<T> {
     private T data;
     private int xCoord, yCoord;
     private String name;
-    private int nodeValue = Integer.MAX_VALUE;
-    private List<Link> adjList = new ArrayList<>();
+    private int nodeValue=Integer.MAX_VALUE;
+    private List<Link> adjList=new ArrayList<>();
 
     public Node(T data) {
-        this.data = data;
+        this.data=data;
     }
 
     public Node(String nodeName, int xCoord, int yCoord) {
@@ -19,7 +19,7 @@ public class Node<T> {
     }
 
     public Node(T data, String nodeName, int xCoord, int yCoord) {
-        this.data = data;
+        this.data=data;
         setNodeName(nodeName);
         setXCoord(xCoord);
         setYCoord(yCoord);
@@ -58,7 +58,7 @@ public class Node<T> {
 
     public void setNodeName(String name) {
         if (name.length()>24) return;
-        this.name = name;
+        this.name=name;
     }
 
     public T getData() {
