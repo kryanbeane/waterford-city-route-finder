@@ -1,0 +1,138 @@
+<object-stream>
+  <main.Node-array>
+    <main.Node>
+      <data class="string">Waterford Hospital</data>
+      <xCoord>550</xCoord>
+      <yCoord>285</yCoord>
+      <name>Waterford Hospital</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">Clock Tower</data>
+      <xCoord>347</xCoord>
+      <yCoord>128</yCoord>
+      <name>Clock Tower</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">Peoples Park</data>
+      <xCoord>385</xCoord>
+      <yCoord>182</yCoord>
+      <name>Peoples Park</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">Kilbarry Nature Park</data>
+      <xCoord>300</xCoord>
+      <yCoord>323</yCoord>
+      <name>Kilbarry Nature Park</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">May Park Trail</data>
+      <xCoord>432</xCoord>
+      <yCoord>245</yCoord>
+      <name>May Park Trail</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">Reginalds Tower</data>
+      <xCoord>392</xCoord>
+      <yCoord>146</yCoord>
+      <name>Reginalds Tower</name>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">Waterford Medieval Museum</data>
+      <xCoord>378</xCoord>
+      <yCoord>164</yCoord>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+    <main.Node>
+      <data class="string">House of Waterford Crystal</data>
+      <xCoord>382</xCoord>
+      <yCoord>159</yCoord>
+      <nodeValue>2147483647</nodeValue>
+      <adjList>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjList>
+    </main.Node>
+  </main.Node-array>
+</object-stream>

@@ -9,7 +9,7 @@
    <children>
       <BorderPane layoutX="7.0" style="-fx-background-color: #F1FAEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <ImageView fx:id="iv" fitHeight="332.0" fitWidth="639.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="iv" fitHeight="332.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@MapOfWaterford.png" />
                </image></ImageView>

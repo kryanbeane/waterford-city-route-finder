@@ -20,7 +20,7 @@ public class Controller {
     @FXML private ImageView iv;
     @FXML private Label contextLabel, lengthLabel;
     @FXML private TextField addPointX, addPointY;
-    private Image rawImage;
+    private Image rawImage, blackWhiteImage;
     private ArrayList<Integer> pointCoordinates = new ArrayList<>(4);
     public static ArrayList<Node<?>> agendaList = new ArrayList<>();
     int limit = 10;
@@ -37,36 +37,9 @@ public class Controller {
     }
 
     public void initializeMap() {
-        Image startImage = new Image("MapOfWaterford.png");
+        Image startImage=new Image("MapOfWaterford.png", (int)iv.getFitWidth(), (int)iv.getFitHeight(), false, true);
         iv.setImage(startImage);
-    }
-
-    public void findPathBetweenSelectedPoints() {
-        try {
-            Image blackWhiteImage = ImageProcessor.convertImageToBlackAndWhite(rawImage, 2.62);
-            Node<Color>[] nodes = ImageProcessor.createGraphNodesFromBlackAndWhiteImage(blackWhiteImage);
-            List<List<Node<?>>> bfsPaths = new ArrayList<>();
-            for (int i=0; i<pointCoordinates.size(); i += 2) {
-                if (i+2 >= pointCoordinates.size()) continue;
-
-                Node<Color> source = ImageProcessor.getNodesBasedOnMouseCoordinates(blackWhiteImage, pointCoordinates.get(i), pointCoordinates.get(i + 1), nodes);
-                Node<Color> destination = ImageProcessor.getNodesBasedOnMouseCoordinates(blackWhiteImage, pointCoordinates.get(i + 2), pointCoordinates.get(i + 3), nodes);
-                Search<?> search = new Search(source, destination);
-
-                if (Settings.searchType) search.BFS()
-                else search.dijkstra(nodes);
-
-                contextLabel.setText("Generated path from (" + source.getXCoord() + ", " + source.getYCoord() + ") to (" + destination.getXCoord() + ", " + destination.getYCoord() + ")");
-                bfsPaths.add(search.getPath());
-            }
-
-            List<Node<?>> totalPath = Searching.addNodePaths(bfsPaths);
-            lengthLabel.setText(ImageProcessor.getCostOfPath(totalPath) + "m");
-            iv.setImage(ImageProcessor.drawPathOnImage(rawImage, totalPath, Color.web(Settings.pathColour), Settings.isFabulous));
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        blackWhiteImage=new Image("BlackWhiteMap.png", (int)iv.getFitWidth(), (int)iv.getFitHeight(), false, true);
     }
 
     public void resetMap() {
