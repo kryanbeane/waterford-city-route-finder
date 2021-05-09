@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
-      <BorderPane layoutX="7.0" style="-fx-background-color: #F1FAEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="7.0" prefHeight="660.0" prefWidth="749.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="537.0" text="WATERFORD CITY ROUTE FINDER" textAlignment="CENTER" textFill="#0b090a" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="16.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font name="Impact" size="34.0" />
+               </font>
+            </Label>
+         </top>
          <center>
-            <ImageView fx:id="iv" fitHeight="332.0" fitWidth="639.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@MapOfWaterford.png" />
-               </image></ImageView>
+            <VBox prefHeight="209.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="iv" fitHeight="332.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@MapOfWaterford.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #d3d3d3; -fx-background-radius: 16;">
+                     <VBox.margin>
+                        <Insets left="24.0" right="24.0" top="16.0" />
+                     </VBox.margin>
+                     <children>
+                        <RadioButton fx:id="BFSButt" mnemonicParsing="false" text="BFS" />
+                        <RadioButton fx:id="dijkstraButt" mnemonicParsing="false" text="DIJKSTRA" />
+                        <RadioButton fx:id="singleRouteButt" mnemonicParsing="false" text="Single Route" />
+                        <RadioButton fx:id="multipleRoutesButt" mnemonicParsing="false" text="Multiple Rutes" />
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="72.0" right="72.0" top="16.0" />
+               </BorderPane.margin>
+            </VBox>
          </center></BorderPane>
    </children>
 </AnchorPane>

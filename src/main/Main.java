@@ -17,6 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/routeFinder.fxml")));
         primaryStage.setTitle("Waterford City Route Finder");
         primaryStage.setScene(new Scene(root, 750, 500));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -30,10 +31,9 @@ public class Main extends Application {
     }
 
     public static Node<String>[] loadLandmarks() throws IOException, ClassNotFoundException {
-        Node<String>[] nodes;
         XStream xstream = new XStream(new DomDriver());
-        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("landmarks.xml"));
-        nodes = (Node<String>[]) is.readObject();
+        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("src/resources/landmarks.xml"));
+        Node<String>[] nodes = (Node<String>[]) is.readObject();
         is.close();
 
         return nodes;
@@ -41,7 +41,7 @@ public class Main extends Application {
 
     public static void saveLandmarks(Node<String>[] nodes) throws Exception {
         XStream xstream=new XStream(new DomDriver());
-        ObjectOutputStream out=xstream.createObjectOutputStream(new FileWriter("landmarks.xml"));
+        ObjectOutputStream out=xstream.createObjectOutputStream(new FileWriter("src/resources/landmarks.xml"));
         out.writeObject(nodes);
         out.close();
     }
@@ -78,4 +78,5 @@ public class Main extends Application {
 
         return landmarks;
     }
+
 }
