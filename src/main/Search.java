@@ -1,36 +1,36 @@
 package main;
 import java.util.*;
 
-public class Search<N> {
-    private Node<N> source, destination;
-    private List<Node<N>> path;
+public class Search{
+    private Node<?> source, destination;
+    private List<Node<?>> path;
 
-    public Search(Node<N> source, Node<N> destination) {
+    public Search(Node<?> source, Node<?> destination) {
         this.source=source;
         this.destination=destination;
     }
 
-    public Node<N> getSource() {
+    public Node<?> getSource() {
         return source;
     }
 
-    public void setSource(Node<N> source) {
+    public void setSource(Node<?> source) {
         this.source = source;
     }
 
-    public Node<N> getDestination() {
+    public Node<?> getDestination() {
         return destination;
     }
 
-    public void setDestination(Node<N> destination) {
+    public void setDestination(Node<?> destination) {
         this.destination = destination;
     }
 
-    public List<Node<N>> getPath() {
+    public List<Node<?>> getPath() {
         return path;
     }
 
-    public static <T> List<Node<?>> findPathBreadthFirst(Node<?> startNode, T lookingfor) {
+    public static <T> List<Node<?>> bfs(Node<?> startNode, T lookingfor) {
         List<List<Node<?>>> agenda = new ArrayList<>();
         List<Node<?>> firstAgendaPath = new ArrayList<>(),resultPath;
         firstAgendaPath.add(startNode);
@@ -44,8 +44,10 @@ public class Search<N> {
         if (agenda.isEmpty()) return null;
         List<Node<?>> nextPath = agenda.remove(0);
         Node<?> currentNode=nextPath.get(0);
-        if (currentNode.getData().equals(lookingfor)) return nextPath;
-        if (encountered == null) encountered = new ArrayList<>();
+        if (currentNode.getData().equals(lookingfor))
+            return nextPath;
+        if (encountered == null)
+            encountered = new ArrayList<>();
         encountered.add(currentNode);
         for (Link link : currentNode.getAdjList())
             if (!encountered.contains(link)) {
@@ -56,17 +58,16 @@ public class Search<N> {
         return findPathBreadthFirst(agenda, encountered, lookingfor);
     }
 
-    public static <T> CostedPath findCheapestPathDijkstra(Node<?> startNode, int destXCoord, int destYCoord) {
+    public static CostedPath dijkstra(Node<?> startNode, Node<?> destNode) {
         CostedPath cp = new CostedPath();
         List<Node<?>> encountered = new ArrayList<>(), unencountered = new ArrayList<>();
         startNode.setNodeValue(0);
         unencountered.add(startNode);
         Node<?> currentNode;
-
         do {
             currentNode = unencountered.remove(0);
             encountered.add(currentNode);
-            if (currentNode.getXCoord() == destXCoord && currentNode.getYCoord() == destYCoord) {
+            if (currentNode==destNode) {
                 cp.pathList.add(currentNode);
                 cp.pathCost = currentNode.getNodeValue();
                 while (currentNode != startNode) {
@@ -93,5 +94,12 @@ public class Search<N> {
             unencountered.sort(Comparator.comparingInt(Node::getNodeValue));
         } while (!unencountered.isEmpty());
         return null;
+    }
+
+    public static List<Node<?>> addNodePaths(List<List<Node<?>>> paths) {
+        List<Node<?>> finalPath = new ArrayList<>(paths.get(0));
+        for (int i=1; i<paths.size(); i++)
+            finalPath.addAll(paths.get(i));
+        return finalPath;
     }
 }
