@@ -7,15 +7,19 @@
       <name>Waterford Hospital</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">Clock Tower</data>
@@ -24,15 +28,19 @@
       <name>Clock Tower</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">Peoples Park</data>
@@ -41,15 +49,19 @@
       <name>Peoples Park</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">Kilbarry Nature Park</data>
@@ -58,15 +70,19 @@
       <name>Kilbarry Nature Park</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">May Park Trail</data>
@@ -75,15 +91,19 @@
       <name>May Park Trail</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">Reginalds Tower</data>
@@ -92,15 +112,19 @@
       <name>Reginalds Tower</name>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">Waterford Medieval Museum</data>
@@ -108,15 +132,19 @@
       <yCoord>164</yCoord>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
     <main.Node>
       <data class="string">House of Waterford Crystal</data>
@@ -124,15 +152,19 @@
       <yCoord>159</yCoord>
       <nodeValue>2147483647</nodeValue>
       <adjList>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
+        <main.Node reference="../.."/>
+        <main.Node reference="../.."/>
       </adjList>
+      <adjListLink>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+        <main.Link>
+          <destNode reference="../../.."/>
+          <cost>10</cost>
+        </main.Link>
+      </adjListLink>
     </main.Node>
   </main.Node-array>
 </object-stream>
