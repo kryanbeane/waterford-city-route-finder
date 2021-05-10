@@ -17,7 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/routeFinder.fxml")));
         primaryStage.setTitle("Waterford City Route Finder");
         primaryStage.setScene(new Scene(root, 750, 500));
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -75,7 +75,6 @@ public class Main extends Application {
         reginaldsTower.connectToNodeUndirected(reginaldsTower, 10);
         waterfordMedievalMuseum.connectToNodeUndirected(waterfordMedievalMuseum, 10);
         houseOfWaterfordCrystal.connectToNodeUndirected(houseOfWaterfordCrystal, 10);
-
         return landmarks;
     }
 
