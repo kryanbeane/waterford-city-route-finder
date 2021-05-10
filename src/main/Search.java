@@ -10,54 +10,6 @@ public class Search{
         this.destination=destination;
     }
 
-    public Node<?> getSource() {
-        return source;
-    }
-
-    public void setSource(Node<?> source) {
-        this.source = source;
-    }
-
-    public Node<?> getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Node<?> destination) {
-        this.destination = destination;
-    }
-
-    public List<Node<?>> getPath() {
-        return path;
-    }
-
-    public static <T> List<Node<?>> bfs(Node<?> startNode, T lookingfor) {
-        List<List<Node<?>>> agenda = new ArrayList<>();
-        List<Node<?>> firstAgendaPath = new ArrayList<>(),resultPath;
-        firstAgendaPath.add(startNode);
-        agenda.add(firstAgendaPath);
-        resultPath = findPathBreadthFirst(agenda,null,lookingfor);
-        Collections.reverse(Objects.requireNonNull(resultPath));
-        return resultPath;
-    }
-
-    public static <T> List<Node<?>> findPathBreadthFirst(List<List<Node<?>>> agenda, List<Node<?>> encountered, T lookingfor) {
-        if (agenda.isEmpty()) return null;
-        List<Node<?>> nextPath = agenda.remove(0);
-        Node<?> currentNode=nextPath.get(0);
-        if (currentNode.getData().equals(lookingfor))
-            return nextPath;
-        if (encountered == null)
-            encountered = new ArrayList<>();
-        encountered.add(currentNode);
-        for (Link link : currentNode.getAdjList())
-            if (!encountered.contains(link)) {
-                List<Node<?>> newPath = new ArrayList<>(nextPath);
-                newPath.add(0, link.getDestNode());
-                agenda.add(newPath);
-            }
-        return findPathBreadthFirst(agenda, encountered, lookingfor);
-    }
-
     public static CostedPath dijkstra(Node<?> startNode, Node<?> destNode) {
         CostedPath cp = new CostedPath();
         List<Node<?>> encountered = new ArrayList<>(), unencountered = new ArrayList<>();
@@ -96,10 +48,59 @@ public class Search{
         return null;
     }
 
+    public static <T> List<Node<?>> bfs(Node<?> startNode, T lookingfor) {
+        List<List<Node<?>>> agenda = new ArrayList<>();
+        List<Node<?>> firstAgendaPath = new ArrayList<>(),resultPath;
+        firstAgendaPath.add(startNode);
+        agenda.add(firstAgendaPath);
+        resultPath = findPathBreadthFirst(agenda,null,lookingfor);
+        Collections.reverse(Objects.requireNonNull(resultPath));
+        return resultPath;
+    }
+
+    public static <T> List<Node<?>> findPathBreadthFirst(List<List<Node<?>>> agenda, List<Node<?>> encountered, T lookingfor) {
+        if (agenda.isEmpty())
+            return null;
+        List<Node<?>> nextPath = agenda.remove(0);
+        Node<?> currentNode=nextPath.get(0);
+        if (currentNode.getData().equals(lookingfor))
+            return nextPath;
+        if (encountered == null)
+            encountered = new ArrayList<>();
+        encountered.add(currentNode);
+        for (Link link : currentNode.getAdjList())
+            if (!encountered.contains(link)) {
+                List<Node<?>> newPath = new ArrayList<>(nextPath);
+                newPath.add(0, link.getDestNode());
+                agenda.add(newPath);
+            }
+        return findPathBreadthFirst(agenda, encountered, lookingfor);
+    }
+
     public static List<Node<?>> addNodePaths(List<List<Node<?>>> paths) {
         List<Node<?>> finalPath = new ArrayList<>(paths.get(0));
         for (int i=1; i<paths.size(); i++)
             finalPath.addAll(paths.get(i));
         return finalPath;
+    }
+
+    public List<Node<?>> getPath() {
+        return path;
+    }
+
+    public Node<?> getSource() {
+        return source;
+    }
+
+    public void setSource(Node<?> source) {
+        this.source = source;
+    }
+
+    public Node<?> getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Node<?> destination) {
+        this.destination = destination;
     }
 }

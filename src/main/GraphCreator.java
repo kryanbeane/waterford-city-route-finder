@@ -53,8 +53,8 @@ public class GraphCreator {
         return cost;
     }
 
-    public static Image drawPath(Image image, List<Node<?>> nodePath) {
-        WritableImage wi = new WritableImage(image.getPixelReader() ,(int)image.getWidth(), (int)image.getHeight());
+    public static Image drawPath(Image img, List<Node<?>> nodePath) {
+        WritableImage wi = new WritableImage(img.getPixelReader() ,(int)img.getWidth(), (int)img.getHeight());
         PixelWriter pw = wi.getPixelWriter();
         for(Node<?> node : nodePath)
             pw.setColor(node.getXCoord(), node.getYCoord(), Color.BLUE);
