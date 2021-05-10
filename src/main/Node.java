@@ -6,7 +6,8 @@ public class Node<T> {
     private int xCoord, yCoord;
     private String name;
     private int nodeValue=Integer.MAX_VALUE;
-    private List<Link> adjList=new ArrayList<>();
+    private final List<Node<T>> adjList=new ArrayList<>();
+    private final List<Link> adjListLink=new ArrayList<>();
 
     public Node(T data) {
         this.data=data;
@@ -25,13 +26,19 @@ public class Node<T> {
         setYCoord(yCoord);
     }
 
-    public void connectToNodeDirected(Node<?> destNode, int cost) {
-        adjList.add(new Link(destNode, cost));
+    public void connectToNodeDirectedDijkstra(Node<?> destNode, int cost) {
+        adjListLink.add(new Link(destNode,cost));
     }
 
-    public void connectToNodeUndirected(Node<?> destNode, int cost) {
-        adjList.add(new Link(destNode, cost));
-        destNode.adjList.add(new Link(this, cost));
+    public void connectToNodeDirectedBFS(Node<?> destNode) {
+        adjList.add((Node<T>) destNode);
+    }
+
+    public void connectToNodeUndirected(Node<T> destNode, int cost) {
+        adjListLink.add(new Link(destNode,cost));
+        destNode.adjListLink.add(new Link(this,cost));
+        adjList.add(destNode);
+        destNode.adjList.add(this);
     }
 
     public int getXCoord() {
@@ -77,8 +84,12 @@ public class Node<T> {
         this.data=data;
     }
 
-    public List<Link> getAdjList() {
+    public List<Node<T>> getAdjList() {
         return adjList;
+    }
+
+    public List<Link> getAdjListLink() {
+        return adjListLink;
     }
 }
 

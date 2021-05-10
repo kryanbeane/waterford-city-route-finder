@@ -25,4 +25,5 @@ public class Link {
         if(cost<0) cost=0;
         this.cost=cost;
     }
+
 }

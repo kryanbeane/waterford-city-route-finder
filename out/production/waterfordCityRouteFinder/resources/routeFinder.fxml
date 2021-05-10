@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
       <BorderPane layoutX="7.0" prefHeight="660.0" prefWidth="749.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -27,11 +27,11 @@
             </Label>
          </top>
          <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="1118.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="639.0">
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="1118.0">
                      <children>
-                        <ImageView fx:id="iv" fitHeight="332.0" fitWidth="639.0" onMouseClicked="#selectPoints" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="iv" fitHeight="581.0" fitWidth="1118.0" onMouseClicked="#selectPoints" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@MapOfWaterford.png" />
                            </image>
@@ -45,9 +45,9 @@
             </StackPane>
          </center>
          <bottom>
-            <VBox prefHeight="95.0" prefWidth="642.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="164.0" prefWidth="1106.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="41.0" prefWidth="1106.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>

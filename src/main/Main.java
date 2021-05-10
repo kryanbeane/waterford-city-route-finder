@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/routeFinder.fxml")));
         primaryStage.setTitle("Waterford City Route Finder");
-        primaryStage.setScene(new Scene(root, 750, 500));
+        primaryStage.setScene(new Scene(root, 1250, 850));
         //primaryStage.setResizable(false);
         primaryStage.show();
     }
