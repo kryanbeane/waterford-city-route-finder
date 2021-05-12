@@ -1,155 +1,305 @@
 package main;
-import javafx.fxml.FXML;
+import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
-    @FXML
-    ImageView iv;
-    Image rawImage, blackWhiteImage;
-    ArrayList<Integer> nodeCoords = new ArrayList<>(4);
-    ArrayList<Button> markers = new ArrayList<>(2);
-    ArrayList<Node<?>> pathNodes, agendaList = new ArrayList<>();
-    Node<?> src = null, dest = null;
-    int limit = 10;
+
+    public double xCoord, yCoord, xSrc, ySrc, xDest, yDest;
+    public boolean startPoint;
+    public int[] graphArray;
+    public ArrayList<Integer> bfsList, dfsList;
+    public ImageView imageView;
+    public WritableImage blackAndWhite;
+    public Pane imagePane, labelPane, landmarkPane;
+    public Node src, dest;
+    public ComboBox srcCombo, destCombo, visitCombo, avoidCombo, dijkstraCombo;
+    public Button bfsbtn, addAvoidBtn, addVisitBtn, clearSelection, dfsBtn, findDijkstra;
+    public RadioButton customSrcRadio, customDestRadio, pointerForSrc, pointerForDest;
 
     public void initialize() {
-        initializeMap();
+        Main.createGraphList();
+        Image img = new Image("waterfordMap.png", 932, 478, false, false);
+        Image bwImg = new Image("BWMap2.png", 932, 478, false, false);
+        PixelReader pr = bwImg.getPixelReader();
+        blackAndWhite = new WritableImage(pr, 932, 478);
+        imageView.setImage(img);
+        selectWaypoint();
         try {
-            Node<?>[] nodes = Main.loadLandmarks();
-        } catch (Exception e) {
-            System.out.println(e);
+            Main.loadLandmarks();
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
-        rawImage = iv.getImage();
+        populateComboBox();
+        updateLandmarks();
+        findRouteDijkstras();
+        addWayPoint();
+        setGraphArray();
+        breadthFirstSearch();
+        addAvoid();
+        startPoint = true;
+        setClearSelection();
+        depthFirstSearch();
+        setDijkstrasBtn();
     }
 
-    public void initializeMap() {
-        blackWhiteImage = new Image("BlackWhiteMap.png", 1118, 561, false, true);
-        iv.setImage(new Image("MapOfWaterford.png", 1118, 561, false, true));
+    public void populateComboBox() {
+        srcCombo.getItems().clear();
+        destCombo.getItems().clear();
+        srcCombo.getSelectionModel().clearSelection();
+        visitCombo.getItems().clear();
+        avoidCombo.getItems().clear();
+        srcCombo.getItems().addAll(Main.graphlist);
+        destCombo.getItems().addAll(Main.graphlist);
+        visitCombo.getItems().addAll(Main.graphlist);
+        avoidCombo.getItems().addAll(Main.graphlist);
     }
 
-    public void resetMap() {
-        nodeCoords = new ArrayList<>(8);
-        src = null;
-        dest = null;
-        for (Button but : markers)
-            ((Pane) iv.getParent()).getChildren().remove(but);
-        markers.clear();
-    }
-
-    public void addSavedLandmarksToMap(Node<?>[] nodes) {
-        int buttonSize = 5;
-        int labelOffsetX = 35;
-        int labelOffsetY = 8;
-
-        Button[] landmarks = new Button[nodes.length];
-        Label[] pointLabels = new Label[nodes.length];
-        for (int i = 0; i < nodes.length; i++) {
-            landmarks[i] = new Button();
-            landmarks[i].getStyleClass().clear();
-            landmarks[i].setStyle("-fx-background-radius: 50%; -fx-background-image: url('location.png');");
-            landmarks[i].setMinSize(buttonSize, buttonSize);
-            landmarks[i].setMaxSize(buttonSize, buttonSize);
-            landmarks[i].setPrefSize(buttonSize, buttonSize);
-            landmarks[i].setTranslateX(nodes[i].getXCoord());
-            landmarks[i].setTranslateY(nodes[i].getYCoord());
-
-            pointLabels[i] = new Label(nodes[i].getNodeName());
-            pointLabels[i].setTranslateX(nodes[i].getXCoord() + labelOffsetX);
-            pointLabels[i].setTranslateY(nodes[i].getYCoord() + labelOffsetY);
-
-            ((StackPane) iv.getParent()).getChildren().add(landmarks[i]);
-            ((StackPane) iv.getParent()).getChildren().add(pointLabels[i]);
+    public void colorPath(ArrayList<Integer> arrayList) {
+        for (int i : arrayList) {
+            double x = i % imageView.getImage().getWidth();
+            double y = i / imageView.getImage().getWidth() + 1;
+            Circle circle = new Circle();
+            circle.setLayoutX(x);
+            circle.setLayoutY(y);
+            circle.setRadius(1);
+            circle.setFill(Color.RED);
+            imagePane.getChildren().add(circle);
         }
     }
 
-    public void addMarkerOnMap(int x, int y) {
-        PixelReader pr = blackWhiteImage.getPixelReader();
-        if (pr.getColor(x, y) != Color.valueOf("0x000000ff")) {
-            Node<?> temp = new Node<>(limit == 0 ? "Source" : "Destination", x, y);
-            agendaList.add(temp);
-            Button marker = new Button();
-            marker.getStyleClass().add(limit == 0 ? "mapStartBtn" : "mapEndBtn");
-            double r = 5;
-            marker.setShape(new Circle(r));
-            marker.setStyle("-fx-background-radius: 50%; -fx-background-image: url('location.png');");
-            marker.setMinSize(5, 5);
-            marker.setMaxSize(5, 5);
-            marker.setTranslateX(x - 2);
-            marker.setTranslateY(y - 2);
-            ((Pane) iv.getParent()).getChildren().add(marker);
-            markers.add(marker);
-        }
+    public void addWayPoint() {
+        addVisitBtn.setOnAction(e -> {
+            Node<?> waypoint = (Node<?>) visitCombo.getSelectionModel().getSelectedItem();
+            Main.waypoints.add(waypoint);
+        });
     }
 
-    public void findCheapestDijkstraPath() {
-        createNodesOfPixels();
-        CostedPath cp = Search.dijkstra(src, dest);
-        iv.setImage(drawPath(iv.getImage(), cp.pathList));
+    public void setDijkstrasBtn() {
+        ObservableList<Object> dijkstrasOptions = FXCollections.observableArrayList();
+        dijkstrasOptions.add("Classic");
+        dijkstrasOptions.add("Historical");
+        dijkstrasOptions.add("Easiest");
+        dijkstraCombo.getItems().addAll(dijkstrasOptions);
     }
 
-    public void findCheapestBFSPath() {
-        createNodesOfPixels();
-        List<Node<?>> bfsPath = Search.bfs(src, dest);
-        iv.setImage(drawPath(iv.getImage(), bfsPath));
-    }
-
-    public void selectPoints(MouseEvent me) {
-        PixelReader pr = blackWhiteImage.getPixelReader();
-        int x = (int) me.getX();
-        int y = (int) me.getY();
-        if (pr.getColor(x, y) != Color.valueOf("0x000000ff")) {
-            if (src != null && dest != null) {
-                resetMap();
-                selectPoints(me);
-            } else if (src == null) {
-                src = new Node<>("Source", x, y);
-                addMarkerOnMap(x, y);
-            } else {
-                dest = new Node<>("Destination", x, y);
-                addMarkerOnMap(x, y);
-            }
-        }
-    }
-
-    public void createNodesOfPixels() {
-        pathNodes = new ArrayList<>();
-        int w = (int) blackWhiteImage.getWidth();
-        int h = (int) blackWhiteImage.getHeight();
-        PixelReader pr = blackWhiteImage.getPixelReader();
-        for (int i = 0; i < h; i++)
-            for (int j = 0; j < w; j++) {
-                Color color = pr.getColor(j, i);
-                if (color.equals(Color.WHITE))
-                    pathNodes.add(new Node<>(i));
-            }
-
-        for (int i = 0; i < pathNodes.size(); i++)
-            if (pathNodes.get(i) != null) {
-                if ((i - w) >= 0 && pathNodes.get(i-w) != null) {
-                    pathNodes.get(i).connectToNodeDirectedDijkstra(pathNodes.get(i-w), 1);
-                    if ((i + w) < pathNodes.size() && pathNodes.get(i+w) != null)
-                        pathNodes.get(i).connectToNodeDirectedDijkstra(pathNodes.get(i+w), 1);
-                    if ((i - 1) >= 0 && pathNodes.get(i-1) != null && ((i - 1) % w) != 0)
-                        pathNodes.get(i).connectToNodeDirectedDijkstra(pathNodes.get(i-1), 1);
-                    if ((i + 1) < pathNodes.size() && pathNodes.get(i+1) != null && ((i + 1) % w) != 0)
-                        pathNodes.get(i).connectToNodeDirectedDijkstra(pathNodes.get(i+1), 1);
+    public void findRouteDijkstras() {
+        findDijkstra.setOnAction(e -> {
+            try {
+                CostedPath cp = new CostedPath();
+                ArrayList<Integer> dijkstraList = new ArrayList<>();
+                Node<?> src = (Node<?>) srcCombo.getSelectionModel().getSelectedItem();
+                Node<?> dest = (Node<?>) destCombo.getSelectionModel().getSelectedItem();
+                Main.waypoints.add(0, src);
+                CostedPath tempCp;
+                Main.waypoints.add(dest);
+                String modifier;
+                if (dijkstraCombo.getSelectionModel().getSelectedItem().equals("Easiest")) modifier = "Easiest";
+                else if (dijkstraCombo.getSelectionModel().getSelectedItem().equals("Historical")) modifier = "Historical";
+                else modifier = "Classic";
+                for (int i = 0; i < Main.waypoints.size() - 1; i++) {
+                    tempCp = Search.findCheapestPathDijkstra(Main.waypoints.get(i), Main.waypoints.get(i + 1).data, Main.avoids, modifier);
+                    cp.pathCost += tempCp.pathCost;
+                    for (int j = 0; j < tempCp.pathList.size(); j++)
+                        cp.pathList.add(tempCp.getPathList().get(j));
                 }
+                for (int i = 0; i < cp.pathList.size() - 1; i++) {
+                    int[] arr = createGraphArray(blackAndWhite);
+                    if (!(cp.pathList.get(i).equals(cp.pathList.get(i + 1))))
+                        dijkstraList.addAll(Search.bfs(cp.pathList.get(i), cp.pathList.get(i + 1), (int)imageView.getImage().getWidth(), arr));
+                }
+                colorPath(dijkstraList);
+                Main.waypoints.clear();
+                Main.avoids.clear();
+            } catch (Exception exc) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Please try again!");
+                alert.showAndWait();
             }
+        });
     }
 
-    public static Image drawPath(Image img, List<Node<?>> nodePath) {
-        WritableImage wi = new WritableImage(img.getPixelReader() ,(int)img.getWidth(), (int)img.getHeight());
-        PixelWriter pw = wi.getPixelWriter();
-        for(Node<?> node : nodePath)
-            pw.setColor(node.getXCoord(), node.getYCoord(), Color.BLUE);
-        return wi;
+    public void setGraphArray() {
+        graphArray = createGraphArray(blackAndWhite);
+    }
+
+    public void breadthFirstSearch() {
+        bfsbtn.setOnAction(e -> {
+            try {
+                if (pointerForSrc.isSelected()) {
+                    src = new Node<>(xSrc, ySrc);
+                    src.x = xSrc;
+                    src.y = ySrc;
+                } else
+                    src = (Node<?>) srcCombo.getSelectionModel().getSelectedItem();
+                if (pointerForDest.isSelected()) {
+                    dest = new Node<>(xDest, yDest);
+                    dest.x = xDest;
+                    dest.y = yDest;
+                } else
+                    dest = (Node<?>) destCombo.getSelectionModel().getSelectedItem();
+                int[] graphArr = createGraphArray(blackAndWhite);
+                bfsList = Search.bfs(src, dest, 932, graphArr);
+                colorPath(bfsList);
+            } catch (Exception exc) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("No valid Start and Destination locations selected");
+                alert.showAndWait();
+            }
+        });
+    }
+
+    public void depthFirstSearch() {
+        dfsBtn.setOnAction(e -> {
+            int width = (int) imageView.getImage().getWidth();
+            try {
+                if (customSrcRadio.isSelected()) {
+                    src = new Node<>(xSrc, ySrc);
+                    src.x = xSrc;
+                    src.y = ySrc;
+                } else
+                    src = (Node<?>) srcCombo.getSelectionModel().getSelectedItem();
+                if (customDestRadio.isSelected()) {
+                    destCombo.setDisable(true);
+                    dest = new Node<>(xDest, yDest);
+                    dest.x = xDest;
+                    dest.y = yDest;
+                } else
+                    dest = (Node<?>) destCombo.getSelectionModel().getSelectedItem();
+                int[] graphArr = createGraphArray(blackAndWhite);
+                dfsList = Search.dfs(src, dest, width, graphArr);
+                colorPath(dfsList);
+            } catch (Exception exc) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Choose a new source and destination!");
+                alert.showAndWait();
+            }
+        });
+    }
+
+    public int[] createGraphArray(WritableImage im) {
+        PixelReader pr = im.getPixelReader();
+        int[] graphArr = new int[932*478];
+        for (int y=0; y<478; y++) {
+            for (int x = 0; x<932; x++) {
+                int currPixel = (y*932 + x);
+                Color color = pr.getColor(x, y);
+                if (color.equals(Color.valueOf("0xffffffff"))) graphArr[currPixel] = 0;
+                else graphArr[currPixel] = -1;
+            }
+        }
+        return graphArr;
+    }
+
+    public void checkPointSuitability(double x, double y, int selection) {
+        if (graphArray[((int)(y*imageView.getImage().getWidth() + x))]==0) {
+            Circle circle = new Circle();
+            circle.setLayoutX(x);
+            circle.setLayoutY(y);
+            circle.setRadius(6);
+            if (selection == 3) {
+                try {
+                    imagePane.getChildren().removeIf(node -> node.getId().equals("Landmark"));
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                }
+                circle.setId("Landmark");
+                circle.setFill(Color.PURPLE);
+            } else if (selection == 1) {
+                try {
+                    imagePane.getChildren().removeIf(node -> node.getId().equals("Start"));
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                }
+                circle.setId("Start");
+                circle.setFill(Color.GREEN);
+            } else {
+                try {
+                    imagePane.getChildren().removeIf(node -> node.getId().equals("Destination"));
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                }
+                circle.setId("Destination");
+                circle.setFill(Color.RED);
+            }
+            imagePane.getChildren().add(circle);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Landmark Error");
+            alert.setContentText("Please select a road next to a new location");
+            alert.showAndWait();
+        }
+    }
+
+    public void selectWaypoint() {
+        int selectStart = 1;
+        int selectDest = 2;
+        int selectLandmk = 3;
+        landmarkPane.setOnMouseClicked(e -> {
+            if (customSrcRadio.isSelected()) {
+                xSrc = e.getX();
+                ySrc = e.getY();
+                checkPointSuitability(xSrc, ySrc, selectStart);
+                customSrcRadio.setSelected(false);
+            } else if (customDestRadio.isSelected()) {
+                xDest = e.getX();
+                yDest = e.getY();
+                checkPointSuitability(xDest, yDest, selectDest);
+                customDestRadio.setSelected(false);
+            } else {
+                xCoord = e.getX();
+                yCoord = e.getY();
+                checkPointSuitability(xCoord, yCoord, selectLandmk);
+            }
+        });
+    }
+
+    public void addAvoid() {
+        addAvoidBtn.setOnAction(e -> {
+            Node<?> avoid = (Node<?>) avoidCombo.getSelectionModel().getSelectedItem();
+            Main.avoids.add(avoid);
+        });
+    }
+
+    public void updateLandmarks() {
+        imagePane.getChildren().clear();
+        landmarkPane.getChildren().clear();
+        srcCombo.getItems().clear();
+        destCombo.getItems().clear();
+        visitCombo.getItems().clear();
+        avoidCombo.getItems().clear();
+        for (Object node : Main.graphlist) {
+            Circle circle = new Circle();
+            circle.setLayoutX(((Landmark) (((Node<?>) node).data)).x);
+            circle.setLayoutY(((Landmark) (((Node<?>) node).data)).y);
+            circle.setRadius(6);
+            circle.setFill(Color.ORANGE);
+            Tooltip tooltip = new Tooltip(((Landmark) (((Node<?>) node).data)).landmarkName);
+            Tooltip.install(circle, tooltip);
+            landmarkPane.getChildren().add(circle);
+            srcCombo.getItems().add(node);
+            destCombo.getItems().add(node);
+            visitCombo.getItems().add(node);
+            avoidCombo.getItems().add(node);
+        }
+    }
+
+    public void setClearSelection() {
+        clearSelection.setOnAction(e -> {
+            imagePane.getChildren().clear();
+            Main.waypoints.clear();
+            Main.avoids.clear();
+            updateLandmarks();
+            populateComboBox();
+        });
     }
 }
