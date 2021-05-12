@@ -1,170 +1,125 @@
 <object-stream>
-  <main.Node-array>
+  <list>
     <main.Node>
-      <data class="string">Waterford Hospital</data>
-      <xCoord>550</xCoord>
-      <yCoord>285</yCoord>
-      <name>Waterford Hospital</name>
+      <data class="main.Landmark">
+        <x>572.0</x>
+        <y>211.0</y>
+        <landmarkName>Reginald&apos;s Tower</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>572.0</x>
+      <y>211.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">Clock Tower</data>
-      <xCoord>347</xCoord>
-      <yCoord>128</yCoord>
-      <name>Clock Tower</name>
+      <data class="main.Landmark">
+        <x>558.0</x>
+        <y>284.0</y>
+        <landmarkName>People&apos;s Park</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>558.0</x>
+      <y>284.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">Peoples Park</data>
-      <xCoord>385</xCoord>
-      <yCoord>182</yCoord>
-      <name>Peoples Park</name>
+      <data class="main.Landmark">
+        <x>523.0</x>
+        <y>191.0</y>
+        <landmarkName>The Clock Tower</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>523.0</x>
+      <y>191.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">Kilbarry Nature Park</data>
-      <xCoord>300</xCoord>
-      <yCoord>323</yCoord>
-      <name>Kilbarry Nature Park</name>
+      <data class="main.Landmark">
+        <x>461.0</x>
+        <y>146.0</y>
+        <landmarkName>Edmund Rice Bridge</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>461.0</x>
+      <y>146.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">May Park Trail</data>
-      <xCoord>432</xCoord>
-      <yCoord>245</yCoord>
-      <name>May Park Trail</name>
+      <data class="main.Landmark">
+        <x>472.0</x>
+        <y>220.0</y>
+        <landmarkName>Ballybricken</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>472.0</x>
+      <y>220.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">Reginalds Tower</data>
-      <xCoord>392</xCoord>
-      <yCoord>146</yCoord>
-      <name>Reginalds Tower</name>
+      <data class="main.Landmark">
+        <x>561.0</x>
+        <y>217.0</y>
+        <landmarkName>Ballybricken</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>561.0</x>
+      <y>217.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">Waterford Medieval Museum</data>
-      <xCoord>378</xCoord>
-      <yCoord>164</yCoord>
+      <data class="main.Landmark">
+        <x>553.0</x>
+        <y>233.0</y>
+        <landmarkName>House of Waterford Crystal</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>553.0</x>
+      <y>233.0</y>
+      <adjList/>
     </main.Node>
     <main.Node>
-      <data class="string">House of Waterford Crystal</data>
-      <xCoord>382</xCoord>
-      <yCoord>159</yCoord>
+      <data class="main.Landmark">
+        <x>807.0</x>
+        <y>354.0</y>
+        <landmarkName>May Park Trail</landmarkName>
+      </data>
       <nodeValue>2147483647</nodeValue>
-      <adjList>
-        <main.Node reference="../.."/>
-        <main.Node reference="../.."/>
-      </adjList>
-      <adjListLink>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-        <main.Link>
-          <destNode reference="../../.."/>
-          <cost>10</cost>
-        </main.Link>
-      </adjListLink>
+      <x>807.0</x>
+      <y>354.0</y>
+      <adjList/>
     </main.Node>
-  </main.Node-array>
+    <main.Node>
+      <data class="main.Landmark">
+        <x>393.0</x>
+        <y>406.0</y>
+        <landmarkName>RSC Waterford</landmarkName>
+      </data>
+      <nodeValue>2147483647</nodeValue>
+      <x>393.0</x>
+      <y>406.0</y>
+      <adjList/>
+    </main.Node>
+    <main.Node>
+      <data class="main.Landmark">
+        <x>279.0</x>
+        <y>436.0</y>
+        <landmarkName>Waterford Institute of Technology</landmarkName>
+      </data>
+      <nodeValue>2147483647</nodeValue>
+      <x>279.0</x>
+      <y>436.0</y>
+      <adjList/>
+    </main.Node>
+    <main.Node>
+      <data class="main.Landmark">
+        <x>798.0</x>
+        <y>407.0</y>
+        <landmarkName>University Hospital Waterford</landmarkName>
+      </data>
+      <nodeValue>2147483647</nodeValue>
+      <x>798.0</x>
+      <y>407.0</y>
+      <adjList/>
+    </main.Node>
+  </list>
 </object-stream>
