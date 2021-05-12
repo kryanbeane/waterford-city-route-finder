@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1220.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutY="27.0" prefHeight="773.0" prefWidth="1220.0">
+         <children>
+            <HBox layoutX="4.0" prefHeight="773.0" prefWidth="1220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="773.0" prefWidth="965.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="478.0" fitWidth="932.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                        <Pane fx:id="imagePane" layoutX="7.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="932.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                        <Pane fx:id="labelPane" layoutX="10.0" layoutY="10.0" prefHeight="478.0" prefWidth="932.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                        <Pane fx:id="landmarkPane" layoutX="20.0" layoutY="20.0" prefHeight="478.0" prefWidth="932.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                     </children>
+                  </AnchorPane>
+                  <ScrollPane focusTraversable="false" prefHeight="774.0" prefWidth="1373.0">
+                     <content>
+                        <VBox prefHeight="770.0" prefWidth="250.0">
+                           <children>
+                              <TilePane prefHeight="104.0" prefWidth="234.0">
+                                 <VBox.margin>
+                                    <Insets left="8.0" right="8.0" top="8.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <VBox prefHeight="92.0" prefWidth="234.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="270.0" text="Source &amp; Destination Selection" textAlignment="CENTER" underline="true">
+                                             <VBox.margin>
+                                                <Insets bottom="8.0" top="16.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ComboBox fx:id="srcCombo" prefHeight="25.0" prefWidth="252.0" promptText="Source" style="-fx-background-radius: 8;">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <RadioButton fx:id="customSrcRadio" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="17.0" prefWidth="187.0" text="Custom" textAlignment="CENTER">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="pointerForSrc" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="17.0" prefWidth="187.0" text="Use Pointer" textAlignment="CENTER">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="4.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="67.0" prefWidth="234.0">
+                                       <children>
+                                          <HBox prefHeight="21.0" prefWidth="234.0">
+                                             <children>
+                                                <ComboBox fx:id="destCombo" prefHeight="25.0" prefWidth="263.0" promptText="Destination" style="-fx-background-radius: 8;">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="26.0" prefWidth="234.0">
+                                             <children>
+                                                <RadioButton fx:id="customDestRadio" mnemonicParsing="false" prefHeight="17.0" prefWidth="176.0" text="Custom">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="pointerForDest" mnemonicParsing="false" prefHeight="17.0" prefWidth="157.0" text="Use Pointer">
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="4.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </TilePane>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="250.0" text="Path Find Methods" textAlignment="CENTER" underline="true">
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ButtonBar prefHeight="141.0" prefWidth="250.0">
+                                <buttons>
+                                    <VBox prefHeight="159.0" prefWidth="240.0">
+                                       <children>
+                                        <Button fx:id="dfsBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 8;" text="Generate Single Route" textAlignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets bottom="6.0" right="6.0" top="8.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="bfsbtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="297.0" style="-fx-background-radius: 8;" text="Breadth First Search" textAlignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets bottom="6.0" right="6.0" top="6.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="findDijkstra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="273.0" style="-fx-background-radius: 8;" text="Dijkstra's Algorithm" textAlignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets bottom="6.0" right="6.0" top="6.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <ComboBox fx:id="dijkstraCombo" prefHeight="25.0" prefWidth="280.0" promptText="                            Options" style="-fx-background-radius: 8;">
+                                             <VBox.margin>
+                                                <Insets right="6.0" top="6.0" />
+                                             </VBox.margin></ComboBox>
+                                       </children>
+                                    </VBox>
+                                </buttons>
+                              </ButtonBar>
+                              <TilePane prefHeight="118.0" prefWidth="250.0">
+                                 <children>
+                                    <HBox prefHeight="102.0" prefWidth="250.0">
+                                       <children>
+                                          <VBox prefHeight="305.0" prefWidth="136.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="227.0" text="Visit Landmarks" underline="true">
+                                                   <VBox.margin>
+                                                      <Insets left="4.0" right="4.0" top="46.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox prefHeight="25.0" prefWidth="125.0">
+                                                   <children>
+                                                      <ComboBox fx:id="visitCombo" prefHeight="25.0" prefWidth="89.0" style="-fx-background-radius: 8;">
+                                                         <HBox.margin>
+                                                            <Insets left="8.0" right="4.0" top="8.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                      <Button fx:id="addVisitBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 8;" text="+">
+                                                         <HBox.margin>
+                                                            <Insets right="8.0" top="8.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="305.0" prefWidth="136.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="132.0" text="Avoid Landmarks" textAlignment="CENTER" underline="true">
+                                                   <VBox.margin>
+                                                      <Insets left="4.0" right="4.0" top="46.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox prefHeight="25.0" prefWidth="125.0">
+                                                   <children>
+                                                      <ComboBox fx:id="avoidCombo" prefHeight="25.0" prefWidth="89.0" style="-fx-background-radius: 8;">
+                                                         <HBox.margin>
+                                                            <Insets left="8.0" right="4.0" top="8.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                      <Button fx:id="addAvoidBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 8;" text="+">
+                                                         <HBox.margin>
+                                                            <Insets right="8.0" top="8.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </TilePane>
+                              <Button fx:id="clearSelection" mnemonicParsing="false" prefHeight="25.0" prefWidth="344.0" style="-fx-background-radius: 8;" text="Clear">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="50.0" top="225.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
